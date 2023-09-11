@@ -1,0 +1,26 @@
+%flex-cent-cent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  %flex-cent-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  %flex-al-cent {
+    display: flex;
+    align-items: center;
+  }
+
+  %flex-cent-around {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  %flex-colum {
+    display: flex;
+    flex-direction: column;
+  }
