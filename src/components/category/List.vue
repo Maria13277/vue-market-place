@@ -43,11 +43,12 @@ export default defineComponent({
 <style lang="scss">
 
 .categories-wrapper {
-    position: absolute;
+    position: fixed;
     z-index: 9900;
     background: $color-white;
     padding: 20px;
-    height: 100%;
+    // height: 100%;
+    width: 17%;
     left: 0px;
     transition: 2s;
 
@@ -56,13 +57,14 @@ export default defineComponent({
     .categories-wrapper__title {
         text-align: start;
         margin-bottom: 30px;
+        margin-left: 51px;
     }
 
     .clear:before,
     .clear:after {
         position: absolute;
         top: 36px;
-        left: 221px;
+        left: 273px;
     }
 }
 
@@ -84,17 +86,50 @@ export default defineComponent({
 
 @media (max-width: 787px) {
     .categories-wrapper {
-        top: 37px;
+        top: 121px;
+        width: 50%;
+    }
+
+    .clear {
+        left: 548px;
     }
 }
 @media (max-width: 604px) {
     .categories-wrapper {
-        top: 52px;
+        top: 134px;
+        width: 50%;
+        height: 100%;
+    }
+
+    .category-wrapper {
+        justify-content: center !important;
+    }
+
+    .categories-wrapper .categories-wrapper__title {
+        text-align: center;
+        margin-left: 0;
+        
+    }
+
+    .clear:before,
+    .clear:after {
+        left: 239px !important
     }
 }
 @media (max-width: 443px) {
     .categories-wrapper {
-        top: 90px;
+        top: 173px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .category-wrapper {
+        justify-content: center !important;
+    }
+
+    .clear:before,
+    .clear:after {
+        left: 276px !important
     }
 }
 </style>

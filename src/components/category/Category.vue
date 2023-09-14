@@ -51,6 +51,7 @@ export default defineComponent({
 }
 .category-wrapper {
     @extend %flex-al-cent;
+    justify-content: flex-end;
     height: 63px;
 
 
