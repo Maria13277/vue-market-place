@@ -116,16 +116,20 @@ export const useProductListStore = defineStore({
                     category: 'Микроскопы',
                     discount: 10
                 }
-            ] as Array<IProduct>
+            ] as Array<IProduct>,
+            resultSearh: ''
         }
     },
     getters: {
         getProductsByCategory() {
             const currentCategory = useCategoriesStore().$state.currentCategory;
-            return currentCategory ? this.productList.filter((item: any): any => item.category == currentCategory) : this.productList
+            return currentCategory ? this.productList.filter((item: any) => item.category == currentCategory) : this.productList
         },
         getProductById: (state) => {
             return (productId: any) => state.productList.find(item => item.id === productId)
+        },
+        getProductBySearchName() {
+            return this.productList.filter((item: any) => item.name.includes(this.resultSearh))
         }
     },
     actions: {

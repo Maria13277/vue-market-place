@@ -1,5 +1,5 @@
 <template>
-    <div class="product-list"  >
+    <div class="product-list">
         <Product :product="product" v-for="product in getProducts" :key="product.id" />
     </div>
 </template>
@@ -14,9 +14,24 @@ export default defineComponent({
 
         return { productStore }
     },
+    props: {
+        productsBy: {
+        type: String,
+        default: 'byCategory'
+       }
+    },
     computed: {
         getProducts() {
-            return this.productStore.getProductsByCategory
+            debugger
+            if (this.productsBy == this.productStore.$state.resultSearh) {
+                return this.productStore.getProductBySearchName
+                
+            }
+
+            if(this.productsBy == 'byCategory') {
+                return this.productStore.getProductsByCategory
+            }
+            
         }
     },
 })
@@ -27,7 +42,7 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    /* padding-top: 35px; */
+
 }
 
 @media (max-width: 788px) {

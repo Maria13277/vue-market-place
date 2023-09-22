@@ -5,7 +5,10 @@
             <h3 class="header-logo__text">Optica</h3>
         </div>
         <div class="header-search">
-            <input type="text" placeholder="Поиск" class="header-search__input">
+            <input type="text" placeholder="Поиск" class="header-search__input" v-model="resultSearh">
+            <div class="header-search-icon" @click="onClickSearchButton" @click.prevent="$router.push('search')">
+                <i class="pi pi-search" style="font-size: 1.3rem; color: white" ></i>
+            </div>
         </div>
         <div class="header-block">
             <div class="header-block-element">
@@ -65,11 +68,14 @@
 import { defineComponent } from 'vue';
 import { ref, onMounted } from 'vue';
 import { useBasketListStore } from '@/stores/basketList';
+import { useProductListStore } from '@/stores/productList';
+import SearchView from '@/views/SearchView.vue';
 export default defineComponent({
     setup() {
         const basketListStore = useBasketListStore()
+        const productListStore = useProductListStore()
 
-        return { basketListStore }
+        return { basketListStore, productListStore }
     },
     methods: {
         toggle(event: any) {
@@ -78,14 +84,22 @@ export default defineComponent({
         removeBasketItem(productId: number) {
             this.basketListStore.removeProduct(productId)
             this.$toast.add({ severity: 'info', summary: 'Удалено', detail: 'Товар удален из корзины', life: 1000 });
+        },
+        onClickSearchButton() {
+            this.productListStore.$state.resultSearh = this.resultSearh
         }
 
+    },
+    data() {
+        return {
+            resultSearh: ''
+        }
     },
     computed: {
         getBasketProducts() {
             return this.basketListStore.$state.basketList
-        },
-    }
+        }
+    },
 })
 </script>
 
@@ -120,12 +134,24 @@ export default defineComponent({
     }
 
     .header-search {
+        display: flex;
+        align-items: center;
+
         .header-search__input {
             padding: 10px 44px 10px 22px;
             border-radius: 20px;
 
             font-size: 13px;
             border: none;
+        }
+
+        .header-search-icon {
+            @extend  %flex-cent-cent;
+
+            width: 30px;
+            height: 30px;
+
+            margin-left: 10px;
         }
 
     }

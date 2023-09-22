@@ -4,6 +4,7 @@ import HomeView from '@/views/HomeView.vue'
 import CatalogView from '@/views/CatalogView.vue'
 import ProductView from '@/views/ProductView.vue'
 import UpdateView from '@/views/UpdateView.vue'
+import SearchView from '@/views/SearchView.vue'
 
 const router = createRouter ({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,11 @@ const router = createRouter ({
             path: '/update/:id',
             name: 'update',
             component: UpdateView
+        },
+        {
+            path: '/search',
+            name: 'search',
+            component: SearchView
         }
     ]
 })
